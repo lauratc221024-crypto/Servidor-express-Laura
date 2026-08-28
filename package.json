@@ -1,17 +1,18 @@
 {
-  "name": "servidor-express-laura",
+  "name": "intro-express-js-adrian-palacios",
   "version": "1.0.0",
-  "description": "Servidor Express - Ficha 3407186",
-  "main": "app.js",
+  "description": "",
+  "main": "index.js",
   "scripts": {
     "dev": "node --watch app.js",
-    "start": "node app.js"
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
-  "author": "Laura Tavera",
+  "author": "",
   "license": "ISC",
   "type": "commonjs",
   "dependencies": {
+    "dotenv": "^17.4.2",
     "express": "^5.2.1"
   }
 }

@@ -1,25 +1,70 @@
-const express = require("express");
-
+const express = require('express');
 const app = express();
-
-const PORT = 3000;
+require('dotenv').config();
+const port = process.env.PORT || 3000;
 
 app.get("/", (req, res) => {
-    res.send("Aprendices ficha 3407186");
+    res.send('Api rest aprendices');
 });
 
-app.get("/ruta1", (req, res) => {
-    res.send("Esta es la ruta 1");
+//middleware para recibir datos en formato json
+app.use(express.json());
+app.use(express.urlencoded({ extended: true })); //para recibir datos de formularios
+
+//lista de aprendices
+app.get("/api/aprendices", (req, res) => {
+    res.status(200).json({
+        "mensaje":"Lista de aprendices",
+    });
+});
+//listar un aprendiz 
+app.get("/api/aprendices/:id", (req, res) => {
+    res.status(200).json({
+        "mensaje":"Lista 1 aprendiz",
+    });
 });
 
-app.get("/ruta2", (req, res) => {
-    res.send("Esta es la ruta 2");
+//empoindt crear aprendiz
+app.post("/api/aprendices/", (req, res) => {
+    res.status(201).json({
+        "mensaje":"crear aprendices",
+    });
 });
 
-app.get("/ruta3", (req, res) => {
-    res.send("Esta es la ruta 3");
+//empoindt editar aprendiz
+app.put("/api/aprendices/:id", (req, res) => {
+    res.status(201).json({
+        "mensaje":"editar aprendices",
+    });
 });
 
-app.listen(PORT, () => {
-    console.log(`Servidor ejecutándose en http://localhost:${PORT}`);
+//empoindt eliminar aprendiz
+app.delete("/api/aprendices/:id", (req, res) => {
+    res.status(200).json({
+        "mensaje":"eliminar aprendices",
+    });
+});
+
+app.post("/rutaJson",(req, res)=>{
+    const todosDatos = req.body;
+    const edad = req.body.edad2;
+    if(edad>=18) {
+        res.json({mensaje:"eres mayor de edad"})
+    } else  {
+        res.json({mensaje:"eres menor de edad"})
+    }
+
+    res.json({datoJson:todosDatos})
+});
+
+app.post("/rutaFormulario",(req, res)=>{
+    const todosDatos = req.body;
+    const programa = req.body.programa
+    res.json({todosDatos:todosDatos, MiPrograma:programa})
+});
+
+
+
+app.listen(port, () => {
+    console.log( `Servidor :http://localhost:${port}` );
 });
